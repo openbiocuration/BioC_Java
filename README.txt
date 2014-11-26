@@ -1,5 +1,9 @@
+Java implementation of BioC
+Version 1.0
+Data structures and code to read / write BioC XML.
+
+--------------------------------------------------------------------------------
 BIOC
-====
 
 BioC XML format can be used to exchange prepared biomedical corpora and
 any accompanying annotations between different research groups and
