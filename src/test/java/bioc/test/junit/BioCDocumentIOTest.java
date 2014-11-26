@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
+import java.net.URL;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -60,8 +61,13 @@ public class BioCDocumentIOTest {
   @Test
   public void testWoodstox()
       throws Exception {
-    File tempFile = testFolder.newFile("test.standard.xml");
-    File dir = new File("xml");
+	  
+	System.setProperty("javax.xml.stream.XMLInputFactory",
+			  "com.ctc.wstx.stax.WstxInputFactory");  
+    
+	File tempFile = testFolder.newFile("test.standard.xml");
+	URL u = this.getClass().getClassLoader().getResource("xml");
+	File dir = new File(u.getPath());
     File[] files = dir.listFiles(new FilenameFilter() {
 
       @Override
@@ -83,7 +89,8 @@ public class BioCDocumentIOTest {
   public void testStandard()
       throws Exception {
     File tempFile = testFolder.newFile("test.standard.xml");
-    File dir = new File("xml");
+	URL u = this.getClass().getClassLoader().getResource("xml");
+	File dir = new File(u.getPath());
     File[] files = dir.listFiles(new FilenameFilter() {
 
       @Override

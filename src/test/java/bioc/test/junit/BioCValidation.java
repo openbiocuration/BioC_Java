@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.custommonkey.xmlunit.Validator;
 import org.custommonkey.xmlunit.exceptions.ConfigurationException;
@@ -18,7 +19,9 @@ public class BioCValidation {
 	@Test
 	public void test() throws ConfigurationException, FileNotFoundException,
 			SAXException, MalformedURLException {
-		File dir = new File("xml");
+
+		URL u = this.getClass().getClassLoader().getResource("xml");
+		File dir = new File(u.getPath());
 		File[] files = dir.listFiles(new FilenameFilter() {
 
 			@Override
@@ -37,7 +40,8 @@ public class BioCValidation {
 		try {
 			System.out.println("testing " + file + " ... ");
 			FileReader reader = new FileReader(file);
-			File dtd = new File(localDTD);
+			URL u = this.getClass().getClassLoader().getResource(localDTD);
+			File dtd = new File(u.getPath());
 			Validator v = new Validator(reader, dtd.toURI().toURL().toString());
 			v.assertIsValid();
 		} catch (AssertionError e) {

@@ -443,7 +443,7 @@ public class ConnectorWoodstox implements Iterator<BioCDocument> {
   public BioCCollection startRead(Reader in) {
     XMLInputFactory2 xmlif = null;
     try {
-      xmlif = (XMLInputFactory2) XMLInputFactory2.newInstance();
+      xmlif = (XMLInputFactory2) XMLInputFactory2.newFactory();
       xmlif.setProperty(
           XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES,
           Boolean.FALSE);

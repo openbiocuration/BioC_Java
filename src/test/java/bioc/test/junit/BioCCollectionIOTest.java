@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -64,7 +65,8 @@ public class BioCCollectionIOTest {
       throws Exception {
     File tempFile = testFolder.newFile("test.woodstox.xml");
 
-    File dir = new File("xml");
+	URL u = this.getClass().getClassLoader().getResource("xml");
+	File dir = new File(u.getPath());
     File[] files = dir.listFiles(new FilenameFilter() {
 
       @Override
@@ -86,7 +88,8 @@ public class BioCCollectionIOTest {
   public void testStandard()
       throws Exception {
     File tempFile = testFolder.newFile("test.standard.xml");
-    File dir = new File("xml");
+	URL u = this.getClass().getClassLoader().getResource("xml");
+	File dir = new File(u.getPath());
     File[] files = dir.listFiles(new FilenameFilter() {
 
       @Override
